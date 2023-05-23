@@ -1,8 +1,6 @@
 """
 Password generator with DearPyGui
 """
-# TODO: force parameters for warranted symbols
-
 import dearpygui.dearpygui as dpg
 import pyperclip
 from constants import TAG_AZ, TAG_AZ_UPPER, TAG_NUM, TAG_SYMBOL, TAG_LENGTH, TAG_PASSWORD, DEFAULT_LENGTH
@@ -45,7 +43,7 @@ with dpg.window(tag="primary_window"):
                            callback=modify_form)
 
     with dpg.group(horizontal=True):
-        dpg.add_button(label=generate_random_password(), width=-1,
+        dpg.add_button(label=generate_random_password(length=DEFAULT_LENGTH), width=-1,
                        tag=TAG_PASSWORD, callback=copy_password_and_exit)
         with dpg.tooltip(dpg.last_item()):
             dpg.add_text("Copy to clipboard and exit")
