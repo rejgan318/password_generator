@@ -1,6 +1,11 @@
 """
 Password generator with DearPyGui
 """
+# TODO: Note fo linux users
+# TODO: force parameters for warranted symbols
+# TODO: external module generate_random_password
+# TODO: cli with options (Argparse)
+
 import string
 import secrets
 import dearpygui.dearpygui as dpg
