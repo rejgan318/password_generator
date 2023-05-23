@@ -1,24 +1,12 @@
 """
 Password generator with DearPyGui
 """
-# TODO: Note fo linux users
 # TODO: force parameters for warranted symbols
-# TODO: external module generate_random_password
-# TODO: cli with options (Argparse)
 
-import string
-import secrets
 import dearpygui.dearpygui as dpg
 import pyperclip
-
-TAG_LENGTH = "length"
-TAG_AZ = "az"
-TAG_AZ_UPPER = "AZ"
-TAG_NUM = "0..9"
-TAG_SYMBOL = "@#$%"
-TAG_PASSWORD = "password"
-
-DEFAULT_LENGTH = 8
+from constants import TAG_AZ, TAG_AZ_UPPER, TAG_NUM, TAG_SYMBOL, TAG_LENGTH, TAG_PASSWORD, DEFAULT_LENGTH
+from generate_random_password import generate_random_password
 
 
 def copy_password_and_exit(sender, app_data):
@@ -27,24 +15,6 @@ def copy_password_and_exit(sender, app_data):
     """
     pyperclip.copy(dpg.get_item_label(TAG_PASSWORD))
     dpg.stop_dearpygui()
-
-
-def generate_random_password(length: int = DEFAULT_LENGTH, az: bool = True, az_upper: bool = True, num: bool = True,
-                             symbol: bool = True) -> str:
-    """
-    :param length: length of password
-    :param az: use lowercase letters - not used, always True
-    :param az_upper: use uppercase letters
-    :param num: use numbers
-    :param symbol: use symbols
-    :return: random password
-    """
-    alphabet = string.ascii_lowercase + \
-               (string.ascii_uppercase if az_upper else "") + \
-               (string.digits if num else "") + \
-               (string.punctuation if symbol else "")
-
-    return ''.join(secrets.choice(alphabet) for i in range(length))
 
 
 def modify_form(sender, app_data):
